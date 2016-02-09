@@ -18,7 +18,7 @@ var client = new Twitter({
 // });
 
 
-function getTweets(user , cb )
+exports.getTweets = function(user , cb )
 {
 	client.get('statuses/user_timeline', { screen_name: 'levelsio', count: 20 }, function(error, tweets, response) {
 	    if (!error) {
@@ -32,4 +32,16 @@ function getTweets(user , cb )
 }
 
 
-getTweets('levelsio' , console.log)
+exports.tweetObjToText = function(tweetObj)
+{
+	var text = "";
+
+	for ( tweet of tweetObj)
+		text +=   tweet.text + " ";
+
+	return text;
+}
+
+// exports.getTweets('levelsio' , function(e , r){
+// 	console.log( tweetObjToText (  r ))
+// })

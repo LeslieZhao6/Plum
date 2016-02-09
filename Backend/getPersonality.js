@@ -36,12 +36,12 @@ exports.getPersonalityTwitterHandle = function( handle  , cb )
 		return getPersonality(text)
 	})
 	.then(function(personality){
-		cb( null , personality )
+		cb( null , personality.tree )
 	})
 	.catch(function(err){ cb(err) })
 	.done();
 }
 
-// exports.getPersonalityTwitterHandle( "levelsio" , function(e , r){
-// 	console.log(JSON.stringify(r) , null  , 4 )
-// } );
+exports.getPersonalityTwitterHandle( "nodejs" , function(e , r){
+	console.log(JSON.stringify(r) , null  , 4 )
+} );

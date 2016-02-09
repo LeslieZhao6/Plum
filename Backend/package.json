@@ -1,0 +1,16 @@
+{
+  "name": "twitter_like_predict",
+  "version": "1.0.0",
+  "description": "",
+  "main": "fetchTweets.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "q": "^1.4.1",
+    "twitter": "^1.2.5",
+    "watson-developer-cloud": "^1.2.1"
+  }
+}

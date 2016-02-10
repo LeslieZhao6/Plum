@@ -20,7 +20,7 @@ var client = new Twitter({
 
 exports.getTweets = function(user , cb )
 {
-	client.get('statuses/user_timeline', { screen_name: 'levelsio', count: 20 }, function(error, tweets, response) {
+	client.get('statuses/user_timeline', { screen_name: user , count: 200 }, function(error, tweets, response) {
 	    if (!error) {
 	      cb(null , tweets);
 	    }

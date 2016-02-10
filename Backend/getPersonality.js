@@ -9,7 +9,6 @@ var personalityInsights = watson.personality_insights({
   version: 'v2'
 });
 
-
 var getProfile = Q.denodeify(personalityInsights.profile.bind(personalityInsights));
 var getTweets = Q.denodeify(fetchTweets.getTweets)
 
@@ -24,7 +23,6 @@ exports.getPersonality = function( text , cb )
 }
 
 getPersonality =  Q.denodeify(exports.getPersonality )
-
 
 exports.getPersonalityTwitterHandle = function( handle  , cb )
 {
@@ -42,6 +40,6 @@ exports.getPersonalityTwitterHandle = function( handle  , cb )
 	.done();
 }
 
-// exports.getPersonalityTwitterHandle( "levelsio" , function(e , r){
-// 	console.log(JSON.stringify(r) , null  , 4 )
-// } );
+exports.getPersonalityTwitterHandle( "ladygaga" , function(e , r){
+	console.log(JSON.stringify(r) , null  , 4 )
+} );

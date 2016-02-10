@@ -13,5 +13,6 @@ tradeoff_analytics.dilemmas(params, function(err, res) {
   if (err)
     console.log(err);
   else
-    console.log(JSON.stringify(res, null, 2));
+    // console.log(JSON.stringify(res, null, 2));
+	console.log(res['resolution']['solutions']);
 });

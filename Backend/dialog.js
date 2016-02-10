@@ -10,7 +10,7 @@ var dialog = watson.dialog({
  
 var params = {
   name: 'sample-convo',
-  file: fs.createFileStream('./sample_pizza.xml')
+  file: fs.createReadStream('./sample_pizza.xml')
 };
 
 dialog.createDialog(params, function(err, dialog) {

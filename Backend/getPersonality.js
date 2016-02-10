@@ -40,6 +40,62 @@ exports.getPersonalityTwitterHandle = function( handle  , cb )
 	.done();
 }
 
-exports.getPersonalityTwitterHandle( "ladygaga" , function(e , r){
-	console.log(JSON.stringify(r) , null  , 4 )
+exports.getPersonalityTwitterHandle( "manojpandey" , function(e , r){
+	var raw = r['tree']['children'];
+	var personality = raw[0]['children'];
+	var needs = raw[1]['children'];
+	var values = raw[2]['children'];
+	console.log("\nPersonality:");
+	// Considering 3 levels; should be sufficient.
+	for(x of personality)
+	{
+		console.log(x['name']);
+		console.log(x['percentage']);
+		if('children' in x)
+		{
+			for(y of x['children'])
+			{
+				console.log(y['name']);
+				console.log(y['percentage']);
+				if('children' in y)
+				{
+					for(z of y['children'])
+					{
+						console.log(z['name']);
+						console.log(z['percentage']);
+					}
+				}
+			}
+		}
+	}
+
+	console.log("\nNeeds:");
+	for(x of needs)
+	{
+		console.log(x['name']);
+		console.log(x['percentage']);
+		if('children' in x)
+		{
+			for(y of x['children'])
+			{
+				console.log(y['name']);
+				console.log(y['percentage']);
+			}
+		}
+	}
+
+	console.log("\nValues:");
+	for(x of values)
+	{
+		console.log(x['name']);
+		console.log(x['percentage']);
+		if('children' in x)
+		{
+			for(y of x['children'])
+			{
+				console.log(y['name']);
+				console.log(y['percentage']);
+			}
+		}
+	}
 } );

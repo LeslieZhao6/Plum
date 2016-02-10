@@ -45,10 +45,14 @@ exports.getConceptsTwitterHandle = function( handle  , cb )
   .done();
 }
  
- exports.getConceptsTwitterHandle( "ladygaga" , function(e , r){
-
- console.log(JSON.stringify(r) , null  , 4 );
+ exports.getConceptsTwitterHandle( "manojpandey" , function(e , r){
+ var concepts = r['annotations'];
+ for(x of concepts)
+ {
+  console.log(x['concept']['label']);
+  console.log(x['score'])
+ }
 } );
 
-// // Retrieve the concepts for input text 
-// exports.getConcepts("potato is just another vegetable",console.log);
+// Retrieve the concepts for input text 
+exports.getConcepts("potato is just another vegetable",console.log);

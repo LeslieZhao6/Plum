@@ -39,64 +39,76 @@ exports.getPersonalityTwitterHandle = function( handle  , cb )
 	.catch(function(err){ cb(err) })
 	.done();
 }
- 
- 
-exports.getPersonalityTwitterHandle( "manojpandey" , function(e , r){
+
+exports.personalityToVec = function(r){
 	var raw = r['tree']['children'];
 	var personality = raw[0]['children'];
 	var needs = raw[1]['children'];
 	var values = raw[2]['children'];
-	console.log("\nPersonality:");
+
+	var vec = {};
+
+	function mergeVec( name , persentage)
+	{
+		if( name in vec)
+			vec[name] += persentage;
+		else vec[name] = persentage;
+	}
+
+	// console.log("\nPersonality:");
 	// Considering 3 levels; should be sufficient.
 	for(x of personality)
 	{
-		console.log(x['name']);
-		console.log(x['percentage']);
+		 
+		mergeVec( x['name'] ,   x['percentage']  );
 		if('children' in x)
 		{
 			for(y of x['children'])
 			{
-				console.log(y['name']);
-				console.log(y['percentage']);
+				 
+				mergeVec( y['name'] ,   y['percentage']  );
 				if('children' in y)
 				{
 					for(z of y['children'])
 					{
-						console.log(z['name']);
-						console.log(z['percentage']);
+					 
+						mergeVec( z['name'] ,   z['percentage']  );
 					}
 				}
 			}
 		}
 	}
 
-	console.log("\nNeeds:");
+	// console.log("\nNeeds:");
 	for(x of needs)
 	{
-		console.log(x['name']);
-		console.log(x['percentage']);
+		mergeVec( x['name'] ,   x['percentage']  );
 		if('children' in x)
 		{
 			for(y of x['children'])
 			{
-				console.log(y['name']);
-				console.log(y['percentage']);
+				mergeVec( y['name'] ,   y['percentage']  );
 			}
 		}
 	}
 
-	console.log("\nValues:");
+	// console.log("\nValues:");
 	for(x of values)
 	{
-		console.log(x['name']);
-		console.log(x['percentage']);
+		mergeVec( y['name'] ,   y['percentage']  );
 		if('children' in x)
 		{
 			for(y of x['children'])
 			{
-				console.log(y['name']);
-				console.log(y['percentage']);
+				mergeVec( y['name'] ,   y['percentage']  );
 			}
 		}
 	}
+
+	return(vec)
+}
+ 
+ 
+exports.getPersonalityTwitterHandle( "sciguy14" , function(e , r){
+	console.log(  exports.personalityToVec(r)  )
  } );

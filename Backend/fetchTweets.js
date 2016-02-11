@@ -91,7 +91,7 @@ exports.tweetObjToText = function(tweetObj)
 	return text;
 }
 
-exports.getTweets('sciguy14' , function(e , r){
-	// console.log( JSON.stringify(  r ))
-	console.log(r);
-})
+// exports.getTweets('sciguy14' , function(e , r){
+// 	// console.log( JSON.stringify(  r ))
+// 	console.log(r);
+// })

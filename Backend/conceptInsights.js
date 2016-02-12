@@ -52,11 +52,11 @@ exports.conceptsTovec = function(r)
 {
   var vec = {};
 
-  function mergeVec( name , persentage)
+  function mergeVec( name , percentage)
   {
     if( name in vec)
-      vec[name] += persentage;
-    else vec[name] = persentage;
+      vec[name] += percentage;
+    else vec[name] = percentage;
   }
 
    var concepts = r['annotations'];

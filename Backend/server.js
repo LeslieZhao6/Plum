@@ -25,7 +25,8 @@ app.get('/registerUser', function (req, res) {
 	 profile_pic : req.param('profile_pic')  , 
 	 bio : req.param('bio') ,
 	 gender : req.param('gender') ,
-	 age : req.param('age')   
+	 age : req.param('age') ,
+	 username :  req.param('username') 
 	}
    
    registerUser.newUser(  user_data  , function( e ){

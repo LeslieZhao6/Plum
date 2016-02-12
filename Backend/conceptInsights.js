@@ -1,7 +1,12 @@
 var watson    = require('watson-developer-cloud');
 var Q         = require('q')
+var fs = require("fs");
 
 var fetchTweets = require("./fetchTweets");
+
+var writeFile = Q.denodeify(fs.writeFile);
+var readFile = Q.denodeify(fs.readFile);
+
 
 var concept_insights = watson.concept_insights({
   username: '32a7b493-3396-4d1b-a180-fa0fd8adcbd1',
@@ -31,19 +36,37 @@ getConcepts =  Q.denodeify(exports.getConcepts );
 
 exports.getConceptsTwitterHandle = function( handle  , cb )
 {
-  getTweets(handle)
-  .then(function(tweetObj){
-    return fetchTweets.tweetObjToText( tweetObj );
+
+  var fName = "./data/concepts/"+ handle +".json";
+  var ConceptsG ;
+
+  readFile(fName)
+  .then(function(  content ){
+    cb( null , JSON.parse(content ));
   })
-  .then(function(text){
-    return getConcepts(text)
-  })
-  .then(function(concept){
-    cb( null , concept )
-  })
-  .catch(function(err){ cb(err) })
-  .done();
+  .catch(function(  err ){
+      getTweets(handle)
+      .then(function(tweetObj){
+        return fetchTweets.tweetObjToText( tweetObj );
+      })
+      .then(function(text){
+        return getConcepts(text)
+      })
+      .then(function(concept){
+        ConceptsG = concept;
+        return writeFile( fName , JSON.stringify(concept));
+      })
+      .then(function(  ){
+        cb( null , ConceptsG )
+      })
+      .catch(function(err){ cb(err) })
+      .done();
+  });
+
 }
+
+
+
  
 
 

@@ -27,12 +27,7 @@ exports.getSentiment = function(text, cb)
   	else
   	{
      cb(null , response)
-  	// 	if( 'score' in response['docSentiment'])
-  	// 	{
-  	// 		sentiment = response['docSentiment']['score'];
-  	// 	}	
   	}
-	  //   console.log(sentiment);
 	});
 }
 
@@ -69,5 +64,21 @@ exports.getSentimentTwitterHandle = function( handle  , cb )
 
 }
 
+exports.sentimentToScore = function( r)
+{
+      var sentiment = 0;
+     if( 'score' in r['docSentiment'])
+     {
+       if (  r['docSentiment']['type'] == 'positive' )
+         sentiment = r['docSentiment']['score'];
+       else
+         sentiment = -1 * r['docSentiment']['score'];
+     } 
 
-exports.getSentimentTwitterHandle('levelsio' , console.log )
+     return sentiment;
+}
+
+
+exports.getSentimentTwitterHandle('ponguru' , function( e , r){
+  console.log(exports.sentimentToScore(r));
+} )

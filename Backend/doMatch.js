@@ -1,10 +1,14 @@
 var Q = require('q');
 var fs = require('fs');
 
-var getPersonality = require('./getPersonality')
+var getPersonality = require('./getPersonality');
+var conceptInsights = require('./conceptInsights');
+var getTone = require("./getTone");
 var fetchTweets = require("./fetchTweets");
 
 var getPersonalityTwitterHandle = Q.denodeify(getPersonality.getPersonalityTwitterHandle);
+var getConceptsTwitterHandle = Q.denodeify(conceptInsights.getConceptsTwitterHandle);
+var getToneTwitterHandle = Q.denodeify(getTone.getToneTwitterHandle);
 var getTweets = Q.denodeify(fetchTweets.getTweets);
 var readFile = Q.denodeify(fs.readFile);
 
@@ -42,18 +46,36 @@ getClosnessAllNewUser = function( user  , cb )
 {
 
 	var personalityVec;
+	var conceptVec;
+	var toneVec;
+
 	var UsersList;
 	var clossness = {};
 
-	Q.all([  getPersonalityTwitterHandle(user) , readFile('./data/users.json')  ])
-	.spread( function( personality , usersText){
+	var interests = {};
+	var personalites = {};
+	var tones = {};
+
+	Q.all([  getPersonalityTwitterHandle(user) , getConceptsTwitterHandle(user)  , getToneTwitterHandle(user)  , readFile('./data/users.json')  ])
+	.spread( function( personality ,  concepts , tone , usersText){
 		personalityVec = getPersonality.personalityToVec(personality);
+		conceptVec = conceptInsights.conceptsTovec(concepts)
+		toneVec = getTone.toneTovec(tone);
+
 		UsersList = JSON.parse(usersText);
 
 		var promises = [];
 
 		for( user in UsersList )
 			promises.push( getPersonalityTwitterHandle(user) ) ;
+
+		for( user in UsersList )
+			promises.push( getConceptsTwitterHandle(user) ) ;
+
+		for( user in UsersList )
+			promises.push( getToneTwitterHandle(user) ) ;
+
+
 		return promises ; 
 
 	} )
@@ -61,7 +83,22 @@ getClosnessAllNewUser = function( user  , cb )
  		var i = 0;
  		for( user in UsersList )
  		{
- 			clossness[user] = getDoctClosness( personalityVec , getPersonality.personalityToVec( arguments[i]));
+ 			personalites[user] = getPersonality.personalityToVec( arguments[i]);
+ 			clossness[user] = { p :  getDoctClosness( personalityVec , personalites[user]  ) };
+ 			i++;
+ 		}
+
+ 		for( user in UsersList )
+ 		{
+ 			interests[user] = conceptInsights.conceptsTovec( arguments[i]);
+ 			clossness[user]['c'] =  getDoctClosness( conceptVec , interests[user]  );
+ 			i++;
+ 		}
+
+ 		for( user in UsersList )
+ 		{
+ 			tones[user] = getTone.toneTovec( arguments[i]);
+ 			clossness[user]['t'] =  getDoctClosness( toneVec , tones[user]  );
  			i++;
  		}
 

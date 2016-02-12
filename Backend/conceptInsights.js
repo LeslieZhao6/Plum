@@ -93,11 +93,8 @@ exports.conceptsTovec = function(r)
 }
 
 
-exports.getConceptsTwitterHandle( "namanspace" , function(e , r){
-      console.log( exports.conceptsTovec(r)  )
-});
+// exports.getConceptsTwitterHandle( "namanspace" , function(e , r){
+//       console.log( exports.conceptsTovec(r)  )
+// });
 
 
-
-// Retrieve the concepts for input text 
-// exports.getConcepts("potato is just another vegetable",console.log);

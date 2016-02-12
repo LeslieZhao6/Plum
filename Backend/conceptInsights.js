@@ -45,14 +45,41 @@ exports.getConceptsTwitterHandle = function( handle  , cb )
   .done();
 }
  
- exports.getConceptsTwitterHandle( "manojpandey" , function(e , r){
- var concepts = r['annotations'];
- for(x of concepts)
- {
-  console.log(x['concept']['label']);
-  console.log(x['score'])
- }
-} );
+
+
+
+exports.conceptsTovec = function(r)
+{
+  var vec = {};
+
+  function mergeVec( name , persentage)
+  {
+    if( name in vec)
+      vec[name] += persentage;
+    else vec[name] = persentage;
+  }
+
+   var concepts = r['annotations'];
+
+   for(x of concepts)
+   {
+      // console.log(x['concept']['label']);
+      // console.log(x['score'])
+      mergeVec( x['concept']['label']  ,  x['score']  )
+   }
+
+   return vec;
+
+
+}
+
+
+
+exports.getConceptsTwitterHandle( "manojpandey" , function(e , r){
+      console.log( exports.conceptsTovec(r)  )
+});
+
+
 
 // Retrieve the concepts for input text 
-exports.getConcepts("potato is just another vegetable",console.log);
+// exports.getConcepts("potato is just another vegetable",console.log);

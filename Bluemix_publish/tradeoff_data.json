@@ -1,0 +1,130 @@
+  {
+  "subject": "Dating",
+  "columns": [
+    {
+      "key": "Potato",
+      "full_name": "Potato",
+      "type": "numeric",
+      "is_objective": true,
+      "goal": "max"
+    },
+    {
+      "key": "Introvert level",
+      "full_name": "Introvert level",
+      "type": "numeric",
+      "is_objective": true,
+      "goal": "max"
+    },
+    {
+      "key": "Talkative",
+      "full_name": "Talkative",
+      "type": "numeric",
+      "is_objective": true,
+      "goal": "max"
+    },
+    {
+      "key": "Humour",
+      "full_name": "Humour",
+      "type": "numeric",
+      "is_objective": true,
+      "goal": "max"
+    },
+    {
+      "key": "IQ",
+      "full_name": "IQ",
+      "type": "numeric",
+      "is_objective": true,
+      "goal": "min"
+    },
+    {
+      "key": "Looks",
+      "full_name": "Looks",
+      "type": "numeric"
+    },
+    {
+      "key": "BMI",
+      "full_name": "BMI",
+      "type": "numeric"
+    },
+    {
+      "key": "Height",
+      "full_name": "Height",
+      "type": "numeric"
+    },
+    {
+      "key": "Vision",
+      "full_name": "Vision",
+      "type": "numeric"
+    }
+  ],
+  "options": [
+    {
+      "key": "0",
+      "name": "Sarthak",
+      "values": {
+        "Potato": 8.24,
+        "Introvert level": 27.74,
+        "Talkative": 31.22,
+        "Humour": 13.08,
+        "Looks": 0.76,
+        "BMI": 4,
+        "Height": 9,
+        "Vision": 8111.66,
+        "IQ": 0.94
+      },
+      "description_html": "Select Biotechnology Portfolio",
+      "app_data": {}
+    },
+    {
+      "key": "1",
+      "name": "Anshuman",
+      "values": {
+        "Potato": 12.69,
+        "Introvert level": 40.09,
+        "Talkative": 24.55,
+        "Humour": 12.81,
+        "Looks": 0.77,
+        "BMI": 4,
+        "Height": 5,
+        "Vision": 5863.63,
+        "IQ": 0.89
+      },
+      "description_html": "Select Health Care Portfolio",
+      "app_data": {}
+    },
+    {
+      "key": "113",
+      "name": "Divam",
+      "values": {
+        "Potato": 5.44,
+        "Introvert level": 6.04,
+        "Talkative": -1.36,
+        "Humour": 10.87,
+        "Looks": 1.09,
+        "BMI": 3,
+        "Height": 2,
+        "Vision": 2273.34,
+        "IQ": 0.97
+      },
+      "description_html": "OpenWealth Emerging Markets Fund",
+      "app_data": {}
+    },
+    {
+      "key": "114",
+      "name": "Mansi",
+      "values": {
+        "Potato": 19.76,
+        "Introvert level": -17.17,
+        "Talkative": -25.86,
+        "Humour": 3.67,
+        "Looks": 0.92,
+        "BMI": 3,
+        "Height": 7,
+        "Vision": 1084.35,
+        "IQ": 0.44
+      },
+      "description_html": "Select Gold Portfolio",
+      "app_data": {}
+    }
+  ]
+}

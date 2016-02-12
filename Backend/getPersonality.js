@@ -1,7 +1,12 @@
 var watson    = require('watson-developer-cloud');
+var fs = require("fs");
 var Q         = require('q')
 
 var fetchTweets = require("./fetchTweets");
+var writeFile = Q.denodeify(fs.writeFile);
+
+
+var readFile = Q.denodeify(fs.readFile);
 
 var personalityInsights = watson.personality_insights({
   username: '5f6e82de-be7f-4f45-833b-a15c343ee6da',
@@ -26,18 +31,38 @@ getPersonality =  Q.denodeify(exports.getPersonality )
 
 exports.getPersonalityTwitterHandle = function( handle  , cb )
 {
-	getTweets(handle)
-	.then(function(tweetObj){
-		return fetchTweets.tweetObjToText( tweetObj );
+
+
+	var fName = "./data/personalities/"+ handle +".json";
+	var personalityG ;
+
+	readFile(fName)
+	.then(function(  content ){
+		cb( null , JSON.parse(content ));
 	})
-	.then(function(text){
-		return getPersonality(text)
+	.catch(function(  err ){
+		console.log("personality not cached YO")
+		getTweets(handle)
+		.then(function(tweetObj){
+			return fetchTweets.tweetObjToText( tweetObj );
+		})
+		.then(function(text){
+			return getPersonality(text)
+		})
+		.then(function(  personality ){
+			// saveFile
+			personalityG = personality;
+			return writeFile( fName , JSON.stringify(personality));
+		})
+		.then(function(){
+			cb( null , personalityG )
+		})
+		.catch(function(err){ cb(err) })
+		.done();
+
 	})
-	.then(function(personality){
-		cb( null , personality )
-	})
-	.catch(function(err){ cb(err) })
-	.done();
+
+	
 }
 
 exports.personalityToVec = function(r){
@@ -109,6 +134,6 @@ exports.personalityToVec = function(r){
 }
  
  
-exports.getPersonalityTwitterHandle( "sciguy14" , function(e , r){
-	console.log(  exports.personalityToVec(r)  )
- } );
+// exports.getPersonalityTwitterHandle( "sciguy14" , function(e , r){
+// 	console.log(  exports.personalityToVec(r)  )
+//  } );

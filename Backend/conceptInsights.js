@@ -67,10 +67,6 @@ exports.getConceptsTwitterHandle = function( handle  , cb )
 
 
 
- 
-
-
-
 exports.conceptsTovec = function(r)
 {
   var vec = {};
@@ -97,8 +93,7 @@ exports.conceptsTovec = function(r)
 }
 
 
-
-exports.getConceptsTwitterHandle( "manojpandey" , function(e , r){
+exports.getConceptsTwitterHandle( "namanspace" , function(e , r){
       console.log( exports.conceptsTovec(r)  )
 });
 

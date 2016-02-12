@@ -36,14 +36,6 @@ getDoctClosness = function( v1 , v2 )
 }
 
 
-// getPersonalityTwitterHandle('levelsio')
-// .then(function(  personality ){
-// 	return [ getTweets('manojpandey')  ,  getTweets('sciguy14')  ]
-// })
-// .spread(function(   ){
-// 	console.log( JSON.stringify(arguments ));
-// })
-
 
 
 getClosnessAllNewUser = function( user  , cb )
@@ -85,6 +77,6 @@ getClosnessAllNewUser = function( user  , cb )
 
 getClosnessAllNewUser('taylorswift13' , console.log);
 
-// a = { q : 3 , h : 8}
-// b = { u : 8 , q : 9}
-// console.log(  dictVectorCosTheeta( a, b )  )
+
+
+

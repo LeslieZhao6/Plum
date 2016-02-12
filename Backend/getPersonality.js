@@ -4,8 +4,6 @@ var Q         = require('q')
 
 var fetchTweets = require("./fetchTweets");
 var writeFile = Q.denodeify(fs.writeFile);
-
-
 var readFile = Q.denodeify(fs.readFile);
 
 var personalityInsights = watson.personality_insights({

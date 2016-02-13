@@ -17,6 +17,11 @@ app.get('/getMatches', function (req, res) {
 
 });
 
+//  /registerUser?name=levels &profile_pic=https://pbs.twimg.com/profile_images/696588888836599808/BuuCzpKH_400x400.jpg&bio=hello&gender=m&age=18&username=levelsio
+
+
+//  /registerUser?name=levels&profile_pic=hello&bio=hello&gender=m&age=18&username=levelsio
+
 
 app.get('/registerUser', function (req, res) {
 
